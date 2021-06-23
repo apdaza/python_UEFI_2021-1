@@ -9,6 +9,6 @@ coordenadas_dos = [int(x.strip(" ")) for x in punto2.split(",")]
 radio = sqrt((coordenadas_uno[0]-coordenadas_dos[0])**2 +
              (coordenadas_uno[1]-coordenadas_dos[1])**2)
 
-area = int(radio * pi ** 2)
+area = int(pi * radio  ** 2)
 
 print("el area de la circunferencia es " + str(area)) 
