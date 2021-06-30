@@ -22,7 +22,7 @@ class Mazo:
             self.cartas = []
         else:
             self.cartas = [Carta(v, p)
-                           for v in ['A', 'J', 'Q', 'K'] + [str(x) for x in range(1,11)]
+                           for v in ['A', 'J', 'Q', 'K'] + [str(x) for x in range(2,11)]
                            for p in ['Treboles', 'Picas', 'Corazones', 'Diamantes']]
             shuffle(self.cartas)
 
@@ -40,15 +40,40 @@ class Mazo:
         for c in self.cartas:
             valor += c.valor_carta()
 
+        tiene_as = False
+        for c in self.cartas:
+            if c.valor == 'A':
+                tiene_as = True
+                break
+        if tiene_as and valor <= 11:
+            valor += 10
+
         return valor
+
+    def entregar_carta(self):
+        if self.cartas != []:
+            carta = self.cartas[0]
+            self.cartas = self.cartas[1:]
+        else:
+            carta = Carta('0', 'Comodin')
+        return carta
+
+    def agregar_carta(self, carta):
+        self.cartas.append(carta)
 
 if __name__ == '__main__':
 
-    c = Carta('Q', 'Diamantes')
-    c.mostrar_carta()
-    print(c.valor_carta())
-
     m = Mazo(True)
-    m.cartas = [Carta("10", "Picas"), Carta("A", "Diamantes")]
-    m.mostrar_cartas()
+    m.cartas = [Carta("5", "Picas"), Carta("A", "Diamantes"),
+                Carta("A", "Treboles")]
+    m.mostrar_cartas(True)
+    
     print(m.valor_mazo())
+
+    c = m.entregar_carta()
+    c.mostrar_carta()
+    print()
+    m.mostrar_cartas(True)
+    print()
+    m.agregar_carta(c)
+    m.mostrar_cartas(True)
