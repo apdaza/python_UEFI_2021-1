@@ -1,4 +1,5 @@
 from instrumentos import *
+from random import choice
 
 class Musico:
     def __init__(self, nombre, instrumento):
@@ -10,7 +11,7 @@ class Musico:
               %(self.nombre, self.instrumento.presentar()))
 
     def afinar_instrumento(self):
-        self.instrumento.afinar()
+        self.instrumento.afinar(choice(["Do", "Re", "Mi"]))
 
     def tocar_instrumento(self):
         self.instrumento.tocar()

@@ -27,7 +27,7 @@ class Banda:
         
 if __name__ == '__main__':
 
-    b = Banda([Guitarra(),Bajo(),Tiple()])
+    b = Banda([Guitarra(),Bajo(),Tiple(), Flauta()])
     b.armar_banda(["Alejandro", "Juan", "Maria", "Ana"])
     b.presentar()
     b.afinar()
