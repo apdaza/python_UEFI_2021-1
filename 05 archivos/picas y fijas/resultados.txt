@@ -1,0 +1,14 @@
+numero secreto 327 
+numero capturado 123 
+intento 1 (picas = 1, fijas = 1) 
+numero capturado 234 
+intento 2 (picas = 2, fijas = 0) 
+numero capturado 345 
+intento 3 (picas = 0, fijas = 1) 
+numero capturado 456 
+intento 4 (picas = 0, fijas = 0) 
+numero capturado 678 
+intento 5 (picas = 1, fijas = 0) 
+numero capturado 987 
+intento 6 (picas = 0, fijas = 1) 
+se terminaron los intentos 

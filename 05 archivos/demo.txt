@@ -1,0 +1,3 @@
+Hola Mundo! trabajando con archivos
+Ejemplo para el manejo de archivos en python
+Buena suerte!
