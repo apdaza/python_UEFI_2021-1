@@ -54,6 +54,9 @@ class Juego:
             if self.jugador2.valor_mazo() > 21:
                 jugando = False
                 break
+            if self.jugador1.valor_mazo() >= 18 and self.jugador2.valor_mazo() >= 18:
+                jugando = False
+                break
 
         self.mostrar_juego(True)
         self.valorar_juego()
