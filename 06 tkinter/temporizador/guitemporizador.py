@@ -18,7 +18,9 @@ class AppTemporizador(Thread):
 
         self.valor.set(self.crono.retornar_tiempo())
 
-        self.boton_iniciar = Button(self.frame, text = 'Iniciar/Parar',
+        self.texto = StringVar()
+        self.texto.set("Iniciar")
+        self.boton_iniciar = Button(self.frame, textvariable = self.texto,
                                     command = self.cambiar_estado)
         self.boton_iniciar.pack(side=LEFT, padx=10, pady=10)
 
@@ -35,17 +37,26 @@ class AppTemporizador(Thread):
         tiempo = [int(x) for x in self.valor.get().split(":")]
         self.crono.iniciar_valores(tiempo)
         self.crono.cambiar_estado()
+        self.cambiar_boton()
 
     def borrar(self):
         self.crono.borrar()
         self.valor.set(self.crono.retornar_tiempo())
+        self.cambiar_boton()
 
+    def cambiar_boton(self):
+        if self.crono.parado:
+            self.texto.set('Iniciar')
+        else:
+            self.texto.set('Parar')
+            
     def run(self):
         while True:
             if not self.crono.parado:
                 self.crono.retroceder()
                 sleep(0.5)
                 self.valor.set(self.crono.retornar_tiempo())
+                self.cambiar_boton()
 
     def callback(self):
         self.principal.quit()
