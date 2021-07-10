@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hola canvas en html</title>
+        <meta charset="UTF-8">
+        <script>
+            function dibujar(){
+                var ctx = document.querySelector("canvas").getContext("2d");
+                ctx.fillStyle = "#ffff00";
+                ctx.fillRect(10, 10, 50, 50);
+                var my_gradient=ctx.createLinearGradient(0,0,0,170);
+                my_gradient.addColorStop(0,"navy");
+                my_gradient.addColorStop(1,"white");
+                ctx.fillStyle=my_gradient;
+                ctx.fillRect(40,40,70,70);
+                
+            }
+            window.onload = dibujar;
+        </script>
+    </head>
+    <body>
+        <nav>
+            <a href="hola.html">Hola mundo</a> |
+            <a href="hola2.html">Hola mundo 2</a> |
+            <a href="hola3.html">Otro ejemplo</a> |
+            <a href="hola4.html">Canvas</a>
+        </nav>
+        <canvas id="lienzo"></canvas>
+    </body>
+</html>
