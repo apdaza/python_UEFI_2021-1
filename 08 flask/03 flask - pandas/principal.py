@@ -14,16 +14,17 @@ def cargador():
     else:
         archivo = request.files['file']
         archivo_cargado = archivo.filename
-
+        opcion = request.form['opcion']
+        print(opcion)
         archivo.save(archivo_cargado)
 
         df = pd.read_csv(archivo_cargado)
         shape_original = df.shape
 
-        df = df.groupby(['generos'])['mascotas','hijos','edades'].median().reset_index()
-
+        df, titulo = agrupar(opcion, df)
+        
         df.plot(figsize = (10, 10),
-                title = 'Mediana de valores',
+                title = titulo,
                 kind = 'bar',
                 x = 'generos'
             )
@@ -39,6 +40,18 @@ def cargador():
         return render_template('resultados.html',
                                imagen = plot_url, 
                                tabla = df.to_html(classes='data', header=True, index=False))
+
+def agrupar(opc, df):
+    if opc == 'mediana':
+        df = df.groupby(['generos'])['mascotas','hijos','edades'].median().reset_index()
+        title = 'Mediana de valores'
+    elif opc == 'minimo':
+        df = df.groupby(['generos'])['mascotas','hijos','edades'].min().reset_index()
+        title = 'Valores mínimos'
+    else:
+        df = df.groupby(['generos'])['mascotas','hijos','edades'].max().reset_index()
+        title = 'Valores máximos'
+    return df, title
 
 
 if __name__ == '__main__':

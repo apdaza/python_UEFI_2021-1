@@ -7,7 +7,13 @@
         Formulario de carga de archivo <br>
         <form action="/cargador" method="POST" 
         enctype="multipart/form-data">
-            <input type="file" name="file">
+            <label for="opcion">Opción</label>
+            <select name="opcion">
+                <option value="mediana">Mediana</option>
+                <option value="minimo">Mínimo</option>
+                <option value="maximo">Máximo</option>
+            </select><br>
+            <input type="file" name="file"><br>
             <input type="submit">
         </form>
     </body>
