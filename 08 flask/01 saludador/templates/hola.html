@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hola mundo con flask y render template</title>
+        <link rel="stylesheet" type="text/css" 
+        href="{{ url_for('static', filename='estilos.css') }}">
+    </head>
+    <body>
+        <h1>Hola {{ nombre }}</h1>
+        <table>
+            <tr>
+                <th>Lenguaje</th>
+                <th>Porcentaje de uso</th>
+            </tr>
+            {% for k, v in uso_lenguajes.items() %}
+            <tr>
+                <td>{{ k }}</td>
+                <td>{{ v }}% de uso</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
