@@ -11,7 +11,9 @@ def index():
 def resultado():
     if request.method == 'POST':
         data = request.form
-        return render_template('resultado.html', datos = data)
+        usuario = request.form['nombre'] + " " + request.form['apellido']
+        
+        return render_template('resultado.html', datos = data, usuario = usuario)
     else:
         return redirect(url_for('index'))
 

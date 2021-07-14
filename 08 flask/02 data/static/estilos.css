@@ -1,0 +1,18 @@
+body {
+    background-color: azure;
+    color:darkblue; 
+}
+
+table {
+    border: 1px solid black;
+}
+
+label {
+    width: 150px;
+    margin: 10px;
+}
+
+input {
+    width: 150px;
+    margin: 10px;
+}
