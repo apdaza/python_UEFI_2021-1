@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resumen datos</title>
+        <link rel="stylesheet" type="text/css" 
+        href="{{ url_for('static', filename='estilos.css') }}">
+    </head>
+    <body>
+        <img src="data:image/png;base64,{{ imagen }}" width="50%">
+        {{ tabla|safe }}
+    </body>
+</html>
