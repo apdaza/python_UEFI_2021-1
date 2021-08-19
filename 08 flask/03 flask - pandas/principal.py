@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import base64
 import io
 
+import sqlite3 as sql
+
 app = Flask(__name__)
 
 @app.route('/cargador', methods=['POST', 'GET'])
@@ -40,6 +42,36 @@ def cargador():
         return render_template('resultados.html',
                                imagen = plot_url, 
                                tabla = df.to_html(classes='data', header=True, index=False))
+
+
+@app.route('/guardar', methods=['POST', 'GET'])
+def guardar():
+    if request.method == 'GET':
+        return render_template('carga2.html')
+    else:
+        archivo = request.files['file']
+        archivo_cargado = archivo.filename
+        df = pd.read_csv(archivo_cargado)
+        df = df.groupby(['ciudades'])['mascotas','hijos'].median().reset_index()
+        print(df.head())
+        try:
+            for index, row in df.iterrows():
+                with sql.connect('datos.db') as conn:
+                    cur = conn.cursor()
+                    cur.execute('Insert into ciudades(nombre, hijos, mascotas) values(?,?,?)',
+                                (row['ciudades'], row['mascotas'], row['hijos']))
+                    conn.commit()
+        except:
+            conn.rollback()
+        finally:
+            conn.row_factory = sql.Row
+            cur = conn.cursor()
+            cur.execute('select * from ciudades')
+            rows = cur.fetchall()
+            conn.close()
+            
+        
+        return render_template('listado.html', data = rows)
 
 def agrupar(opc, df):
     if opc == 'mediana':
